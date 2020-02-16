@@ -1,40 +1,36 @@
 import Dashboard from "./views/Dashboard.jsx";
-import Notifications from "./views/Notifications.jsx";
 import TableList from "./views/TableList.jsx";
 import UserProfile from "./views/UserProfile.jsx";
+import AddFlight from './views/addFlight/AddFlight'
+import EditFlight from './views/EditFlight'
+import GenerateInvoice from './views/GenerateInvoice'
+import FlightAnalytics from './views/FlightAnalytics'
 
 
-// =>Dashboard
-// =>Home
-// =>Add flights
-// =>Edit flights
-// =>Invoice Generator
-// =>Flight Analytics
-// =>User Profile 
-// =>Notification
+
 var routes = [
   {
     path: "/dashboard",
-    name: "Dashboard",
+    name: "Home",
     rtlName: "لوحة القيادة",
     icon: "tim-icons icon-chart-pie-36",
     component: Dashboard,
     layout: "/admin"
   },
   {
-    path: "/tables",
+    path: "/add-flight",
     name: "Add Flight",
     rtlName: "قائمة الجدول",
     icon: "tim-icons icon-calendar-60",
-    component: TableList,
+    component: AddFlight,
     layout: "/admin"
   },
   {
     path: "/edit-flight",
     name: "Edit Flight",
     rtlName: "قائمة الجدول",
-    icon: "tim-icons icon-puzzle-10",
-    component: TableList,
+    icon: "tim-icons icon-pencil",
+    component: EditFlight,
     layout: "/admin"
   },
   {
@@ -42,7 +38,7 @@ var routes = [
     name: "Invoice Generator",
     rtlName: "قائمة الجدول",
     icon: "tim-icons icon-tap-02",
-    component: TableList,
+    component: GenerateInvoice,
     layout: "/admin"
   },
   {
@@ -50,15 +46,7 @@ var routes = [
     name: "Flight Analytics",
     rtlName: "قائمة الجدول",
     icon: "tim-icons icon-send",
-    component: TableList,
-    layout: "/admin"
-  },
-  {
-    path: "/notifications",
-    name: "Notifications",
-    rtlName: "إخطارات",
-    icon: "tim-icons icon-bell-55",
-    component: Notifications,
+    component: FlightAnalytics,
     layout: "/admin"
   },
   {
