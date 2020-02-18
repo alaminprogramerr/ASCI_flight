@@ -14,14 +14,21 @@ var ps;
 
 class Sidebar extends React.Component {
   constructor(props) {
+    
+    if(!window.localStorage.getItem('asci-token')){
+      window.location.href=('/login-page')
+    }
     super(props);
     this.activeRoute.bind(this);
   }
-  // verifies if routeName is the one active (in browser input)
   activeRoute(routeName) {
     return this.props.location.pathname.indexOf(routeName) > -1 ? "active" : "";
   }
   componentDidMount() {
+    
+    if(!window.localStorage.getItem('asci-token')){
+      window.location.href=('/login-page')
+    }
     if (navigator.platform.indexOf("Win") > -1) {
       ps = new PerfectScrollbar(this.refs.sidebar, {
         suppressScrollX: true,

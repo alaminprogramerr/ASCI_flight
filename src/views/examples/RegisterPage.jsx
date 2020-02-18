@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-// reactstrap components
+import Axios from 'axios'
 import {
   Button,
   Card,
@@ -33,7 +33,10 @@ import { Link } from "react-router-dom";
 class RegisterPage extends React.Component {
   state = {
     squares1to6: "",
-    squares7and8: ""
+    squares7and8: "",
+    email:'',
+    password:"",
+    err:{}
   };
   componentDidMount() {
     document.body.classList.toggle("register-page");
@@ -46,8 +49,30 @@ class RegisterPage extends React.Component {
       this.followCursor
     );
   }
-   loginControler(){
-     window.location.href='/admin/dashboard'
+   loginControler=()=>{
+     console.log(this.state)
+     let user = {
+       email:this.state.email,
+       password:this.state.password
+     }
+     Axios.post('http://localhost:5000/api/login' , user)
+     .then(result=>{
+       window.localStorage.setItem('asci-token' , result.data.token.split(' ')[1])
+       window.location.href=('/admin/dashboard')
+     })
+     .catch(err=>{
+       this.setState({
+         err:err.response.data
+       })
+     })
+
+   }
+   onchangeHandler=(event)=>{
+     console.log(event.target.value)
+     event.preventDefault()
+     this.setState({
+      [event.target.name]:event.target.value
+     })
    }
   followCursor = event => {
     let posX = event.clientX - window.innerWidth / 2;
@@ -110,6 +135,8 @@ class RegisterPage extends React.Component {
                             </InputGroupAddon>
                             <Input
                               placeholder="Email"
+                              name="email"
+                              onChange={this.onchangeHandler}
                               type="email"
                               defaultValue="example@gmail.com"
                               onFocus={e => this.setState({ emailFocus: true })}
@@ -129,12 +156,14 @@ class RegisterPage extends React.Component {
                             <Input
                               placeholder="Password"
                               type="password"
+                              name="password"
                               onFocus={e =>
                                 this.setState({ passwordFocus: true })
                               }
                               onBlur={e =>
                                 this.setState({ passwordFocus: false })
                               }
+                              onChange={this.onchangeHandler}
                             />
                           </InputGroup>
                           <FormGroup check className="text-left">
@@ -149,6 +178,11 @@ class RegisterPage extends React.Component {
                         <Button onClick={this.loginControler} className="btn-round" color="primary" size="lg">
                               Login
                         </Button>
+                        <p style={{fontSize:"18px"}} className="text-danger">
+                          {this.state.err.message?
+                          this.state.err.message:""
+                          }
+                        </p>
                       </CardFooter>
                     </Card>
                   </Col>

@@ -2,7 +2,7 @@ import Dashboard from "./views/Dashboard.jsx";
 import TableList from "./views/TableList.jsx";
 import UserProfile from "./views/UserProfile.jsx";
 import AddFlight from './views/addFlight/AddFlight'
-import EditFlight from './views/EditFlight'
+import EditFlight from './views/EditFlight/EditFlight'
 import GenerateInvoice from './views/GenerateInvoice'
 import FlightAnalytics from './views/FlightAnalytics'
 

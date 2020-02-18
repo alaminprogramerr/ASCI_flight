@@ -2,8 +2,7 @@
 import React from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
-
-// reactstrap components
+import {Link} from 'react-router-dom'
 import {
   Button,
   Collapse,
@@ -22,6 +21,7 @@ import {
 } from "reactstrap";
 
 class AdminNavbar extends React.Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -35,6 +35,10 @@ class AdminNavbar extends React.Component {
   }
   componentWillUnmount() {
     window.removeEventListener("resize", this.updateColor);
+  }
+  logOut=()=>{
+    window.localStorage.removeItem('asci-token')
+    window.location.href=('/login')
   }
   // function that adds color white/transparent to the navbar on resize (this is for the collapse)
   updateColor = () => {
@@ -131,45 +135,6 @@ class AdminNavbar extends React.Component {
                     color="default"
                     data-toggle="dropdown"
                     nav
-                  >
-                    <div className="notification d-none d-lg-block d-xl-block" />
-                    <i className="tim-icons icon-sound-wave" />
-                    <p className="d-lg-none">Notifications</p>
-                  </DropdownToggle>
-                  <DropdownMenu className="dropdown-navbar" right tag="ul">
-                    <NavLink tag="li">
-                      <DropdownItem className="nav-item">
-                        Mike John responded to your email
-                      </DropdownItem>
-                    </NavLink>
-                    <NavLink tag="li">
-                      <DropdownItem className="nav-item">
-                        You have 5 more tasks
-                      </DropdownItem>
-                    </NavLink>
-                    <NavLink tag="li">
-                      <DropdownItem className="nav-item">
-                        Your friend Michael is in town
-                      </DropdownItem>
-                    </NavLink>
-                    <NavLink tag="li">
-                      <DropdownItem className="nav-item">
-                        Another notification
-                      </DropdownItem>
-                    </NavLink>
-                    <NavLink tag="li">
-                      <DropdownItem className="nav-item">
-                        Another one
-                      </DropdownItem>
-                    </NavLink>
-                  </DropdownMenu>
-                </UncontrolledDropdown>
-                <UncontrolledDropdown nav>
-                  <DropdownToggle
-                    caret
-                    color="default"
-                    data-toggle="dropdown"
-                    nav
                     onClick={e => e.preventDefault()}
                   >
                     <div className="photo">
@@ -180,14 +145,15 @@ class AdminNavbar extends React.Component {
                   </DropdownToggle>
                   <DropdownMenu className="dropdown-navbar" right tag="ul">
                     <NavLink tag="li">
-                      <DropdownItem className="nav-item">Profile</DropdownItem>
-                    </NavLink>
-                    <NavLink tag="li">
-                      <DropdownItem className="nav-item">Settings</DropdownItem>
+                      <DropdownItem className="nav-item">
+                        <Link to="/admin/user-profile" style={{color:'black' , fontSize:"16px" , fontWeight:"500"}}>Profile</Link>
+                      </DropdownItem>
                     </NavLink>
                     <DropdownItem divider tag="li" />
                     <NavLink tag="li">
-                      <DropdownItem className="nav-item">Log out</DropdownItem>
+                      <DropdownItem className="nav-item" onClick={this.logOut}>
+                      <Link to="/admin/profile" style={{color:'black' , fontSize:"16px" , fontWeight:"500"}}>Log Out</Link>
+                      </DropdownItem>
                     </NavLink>
                   </DropdownMenu>
                 </UncontrolledDropdown>

@@ -14,6 +14,7 @@ import {
   Row,
   Col
 } from "reactstrap";
+import EditProfile from "./EditProfile";
 
 class UserProfile extends React.Component {
   render() {
@@ -54,6 +55,15 @@ class UserProfile extends React.Component {
                     </Button>
                   </div>
                 </CardFooter>
+              </Card>
+            </Col>
+          </Row>
+          <Row>
+            <Col className="col-md-6 offset-md-3">
+              <Card className="card-user">
+                <CardBody>
+                  <EditProfile/>
+                </CardBody>
               </Card>
             </Col>
           </Row>

@@ -20,8 +20,13 @@ import "./deshbord/assets/scss/black-dashboard-react.scss";
 import "./deshbord/assets/demo/demo.css";
 import "./deshbord/assets/css/nucleo-icons.css";
 import './app.css'
+import { useEffect } from "react";
 
-const App = ()=>{
+class App extends React.Component{
+  componentDidMount(){
+    
+  }
+  render(){
   return(
   <BrowserRouter>
     <Switch>
@@ -40,6 +45,7 @@ const App = ()=>{
     </Switch>
   </BrowserRouter>
   )
+  }
 }
 
 
